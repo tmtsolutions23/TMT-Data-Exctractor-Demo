@@ -2,7 +2,7 @@
 
 import { useCallback, useState, useRef } from "react";
 import { useDropzone } from "react-dropzone";
-import * as XLSX from "xlsx";
+import ExcelJS from "exceljs";
 import {
   FileText,
   Upload,
@@ -332,28 +332,45 @@ export default function Home() {
     return { header, rows };
   };
 
-  const exportExcel = () => {
+  const exportExcel = async () => {
     const { header, rows } = buildSheetData();
-    const ws = XLSX.utils.aoa_to_sheet([header, ...rows]);
+    const wb = new ExcelJS.Workbook();
+    const ws = wb.addWorksheet("Extracted Data");
+
+    ws.addRow(header);
+    for (const row of rows) ws.addRow(row);
 
     // Auto-size columns
-    ws["!cols"] = header.map((h, i) => {
+    ws.columns.forEach((col, i) => {
       const maxLen = Math.max(
-        h.length,
+        header[i].length,
         ...rows.map((r) => String(r[i] ?? "").length)
       );
-      return { wch: Math.min(maxLen + 2, 50) };
+      col.width = Math.min(maxLen + 2, 50);
     });
 
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Extracted Data");
-    XLSX.writeFile(wb, `tmt-extraction-${new Date().toISOString().slice(0, 10)}.xlsx`);
+    // Style header row
+    ws.getRow(1).font = { bold: true };
+
+    const buffer = await wb.xlsx.writeBuffer();
+    const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `tmt-extraction-${new Date().toISOString().slice(0, 10)}.xlsx`;
+    a.click();
+    URL.revokeObjectURL(url);
   };
 
   const exportCSV = () => {
     const { header, rows } = buildSheetData();
-    const ws = XLSX.utils.aoa_to_sheet([header, ...rows]);
-    const csv = XLSX.utils.sheet_to_csv(ws);
+    const escape = (v: string) => {
+      if (v.includes(",") || v.includes('"') || v.includes("\n")) {
+        return `"${v.replace(/"/g, '""')}"`;
+      }
+      return v;
+    };
+    const csv = [header.map(escape).join(","), ...rows.map((r) => r.map((v) => escape(String(v))).join(","))].join("\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
