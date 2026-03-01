@@ -3,6 +3,7 @@
 import { useCallback, useState, useRef } from "react";
 import { useDropzone } from "react-dropzone";
 import ExcelJS from "exceljs";
+import JSZip from "jszip";
 import {
   FileText,
   Upload,
@@ -322,62 +323,91 @@ export default function Home() {
     return Array.from(colSet);
   };
 
-  const buildSheetData = () => {
-    const cols = getAllColumns();
-    const header = cols.map((c) => (c === "_fileName" ? "File Name" : formatKey(c)));
-    const rows = completedFiles.map((f) => {
-      const flat = flattenObject(f.result!);
-      return cols.map((c) => (c === "_fileName" ? f.file.name : flat[c] ?? ""));
-    });
-    return { header, rows };
-  };
+  // Build an Excel workbook buffer for a single file's extraction
+  const buildSingleExcel = async (entry: FileEntry): Promise<ArrayBuffer> => {
+    const flat = flattenObject(entry.result!);
+    const keys = Object.keys(flat);
+    const header = keys.map(formatKey);
+    const values = keys.map((k) => flat[k] ?? "");
 
-  const exportExcel = async () => {
-    const { header, rows } = buildSheetData();
     const wb = new ExcelJS.Workbook();
     const ws = wb.addWorksheet("Extracted Data");
-
     ws.addRow(header);
-    for (const row of rows) ws.addRow(row);
+    ws.addRow(values);
 
-    // Auto-size columns
     ws.columns.forEach((col, i) => {
-      const maxLen = Math.max(
-        header[i].length,
-        ...rows.map((r) => String(r[i] ?? "").length)
-      );
+      const maxLen = Math.max(header[i].length, String(values[i] ?? "").length);
       col.width = Math.min(maxLen + 2, 50);
     });
-
-    // Style header row
     ws.getRow(1).font = { bold: true };
 
     const buffer = await wb.xlsx.writeBuffer();
-    const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `tmt-extraction-${new Date().toISOString().slice(0, 10)}.xlsx`;
-    a.click();
-    URL.revokeObjectURL(url);
+    return buffer as ArrayBuffer;
   };
 
-  const exportCSV = () => {
-    const { header, rows } = buildSheetData();
+  // Build a CSV string for a single file's extraction
+  const buildSingleCSV = (entry: FileEntry): string => {
+    const flat = flattenObject(entry.result!);
+    const keys = Object.keys(flat);
+    const header = keys.map(formatKey);
+    const values = keys.map((k) => flat[k] ?? "");
     const escape = (v: string) => {
       if (v.includes(",") || v.includes('"') || v.includes("\n")) {
         return `"${v.replace(/"/g, '""')}"`;
       }
       return v;
     };
-    const csv = [header.map(escape).join(","), ...rows.map((r) => r.map((v) => escape(String(v))).join(","))].join("\n");
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    return [header.map(escape).join(","), values.map((v) => escape(String(v))).join(",")].join("\n");
+  };
+
+  // Strip file extension from name
+  const baseName = (name: string) => name.replace(/\.[^.]+$/, "");
+
+  const downloadBlob = (blob: Blob, filename: string) => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `tmt-extraction-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.download = filename;
     a.click();
     URL.revokeObjectURL(url);
+  };
+
+  const exportExcel = async () => {
+    if (completedFiles.length === 1) {
+      // Single file — download directly
+      const buffer = await buildSingleExcel(completedFiles[0]);
+      const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+      downloadBlob(blob, `${baseName(completedFiles[0].file.name)}-extracted.xlsx`);
+      return;
+    }
+
+    // Multiple files — zip them
+    const zip = new JSZip();
+    for (const entry of completedFiles) {
+      const buffer = await buildSingleExcel(entry);
+      zip.file(`${baseName(entry.file.name)}-extracted.xlsx`, buffer);
+    }
+    const zipBlob = await zip.generateAsync({ type: "blob" });
+    downloadBlob(zipBlob, `tmt-extraction-${new Date().toISOString().slice(0, 10)}.zip`);
+  };
+
+  const exportCSV = async () => {
+    if (completedFiles.length === 1) {
+      // Single file — download directly
+      const csv = buildSingleCSV(completedFiles[0]);
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      downloadBlob(blob, `${baseName(completedFiles[0].file.name)}-extracted.csv`);
+      return;
+    }
+
+    // Multiple files — zip them
+    const zip = new JSZip();
+    for (const entry of completedFiles) {
+      const csv = buildSingleCSV(entry);
+      zip.file(`${baseName(entry.file.name)}-extracted.csv`, csv);
+    }
+    const zipBlob = await zip.generateAsync({ type: "blob" });
+    downloadBlob(zipBlob, `tmt-extraction-${new Date().toISOString().slice(0, 10)}.zip`);
   };
 
   // --- Derived State ---
