@@ -8,6 +8,8 @@ import {
   Mail,
   Zap,
   ChevronRight,
+  BookOpen,
+  ExternalLink,
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -200,6 +202,57 @@ export default function LandingPage() {
                 </div>
               );
             })}
+          </div>
+        </section>
+
+        {/* Featured Product — Alexandria */}
+        <section className="border-y border-white/[0.06]">
+          <div className="max-w-7xl mx-auto px-6 py-20">
+            <div className="max-w-3xl mx-auto text-center mb-10">
+              <p className="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-3">
+                Featured Product
+              </p>
+              <h3
+                className="text-3xl sm:text-4xl font-bold tracking-tight"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                Lib Alexandria
+              </h3>
+            </div>
+            <a
+              href="https://libalexandria.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block max-w-3xl mx-auto rounded-2xl border border-white/[0.08] bg-navy-900/60 p-8 hover:border-amber-500/30 hover:bg-amber-500/[0.03] transition-all"
+            >
+              <div className="flex items-start gap-5">
+                <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0">
+                  <BookOpen className="w-6 h-6 text-amber-400" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <h4
+                      className="text-xl font-bold"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      The ancient library, reimagined.
+                    </h4>
+                    <ExternalLink className="w-4 h-4 text-slate-500 group-hover:text-amber-400 transition-colors shrink-0" />
+                  </div>
+                  <p className="text-sm text-slate-400 leading-relaxed mb-4">
+                    An AI-powered knowledge base we built from the ground up.
+                    Organizations upload their documents and ask questions in
+                    plain language — Alexandria answers using only their data,
+                    with cited sources and zero hallucination. Private, secure,
+                    and SOC 2 certified.
+                  </p>
+                  <span className="inline-flex items-center gap-1.5 text-sm font-medium text-amber-400 group-hover:text-amber-300 transition-colors">
+                    Visit libalexandria.org
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                  </span>
+                </div>
+              </div>
+            </a>
           </div>
         </section>
 
