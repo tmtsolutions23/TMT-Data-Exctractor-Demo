@@ -1,13 +1,13 @@
 import { LRUCache } from "lru-cache";
 import { NextResponse } from "next/server";
 
-// Rate limiting: 10 requests per minute per IP
+// Rate limiting: 30 requests per minute per IP
 const rateLimitCache = new LRUCache<string, number>({
   max: 500,
   ttl: 60_000,
 });
 
-// Daily quota: 100 requests per day per IP
+// Daily quota: 300 requests per day per IP
 const dailyQuotaCache = new LRUCache<string, number>({
   max: 500,
   ttl: 86_400_000,
@@ -27,14 +27,14 @@ export function checkRateLimit(ip: string): NextResponse | null {
   const dailyCount = (dailyQuotaCache.get(ip) ?? 0) + 1;
   dailyQuotaCache.set(ip, dailyCount);
 
-  if (minuteCount > 10) {
+  if (minuteCount > 30) {
     return NextResponse.json(
       { error: "Rate limit exceeded. Please try again in a minute." },
       { status: 429 }
     );
   }
 
-  if (dailyCount > 100) {
+  if (dailyCount > 300) {
     return NextResponse.json(
       { error: "Daily quota exceeded. Please try again tomorrow." },
       { status: 429 }
