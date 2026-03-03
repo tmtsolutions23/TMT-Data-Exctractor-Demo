@@ -133,7 +133,7 @@ export default function LandingPage() {
                   { value: "14+", label: "Years in IT" },
                   { value: "AI", label: "Automation Focus" },
                   { value: "Full", label: "Stack Expertise" },
-                  { value: "NYC", label: "Metro Area" },
+                  { value: "WC", label: "Westchester, NY" },
                 ].map((stat) => (
                   <div
                     key={stat.label}
