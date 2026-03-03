@@ -267,14 +267,14 @@ export default function IntakePage() {
         <Header />
 
         {/* Hero */}
-        <section className="max-w-7xl mx-auto px-6 pt-12 pb-8 w-full">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 sm:pt-12 pb-4 sm:pb-8 w-full">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-medium mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
               Live Demo
             </div>
             <h2
-              className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-[1.1] mb-3"
+              className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1] mb-3"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Smart client intake
@@ -283,7 +283,7 @@ export default function IntakePage() {
                 powered by AI.
               </span>
             </h2>
-            <p className="text-lg text-slate-400 leading-relaxed max-w-lg">
+            <p className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-lg">
               Watch an AI chatbot qualify leads in real time. Pick an industry
               to see how it works for your clients.
             </p>
@@ -291,7 +291,7 @@ export default function IntakePage() {
         </section>
 
         {/* Main Content */}
-        <section className="max-w-7xl mx-auto px-6 pb-24 w-full flex-1">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-16 sm:pb-24 w-full flex-1">
           {!vertical ? (
             /* ---- Vertical Selector ---- */
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -299,7 +299,7 @@ export default function IntakePage() {
                 <button
                   key={v.id}
                   onClick={() => selectVertical(v.id)}
-                  className="group text-left p-6 rounded-2xl border border-white/[0.08] bg-navy-900/40 hover:border-amber-500/30 hover:bg-navy-900/60 transition-all cursor-pointer"
+                  className="group text-left p-4 sm:p-6 rounded-2xl border border-white/[0.08] bg-navy-900/40 hover:border-amber-500/30 hover:bg-navy-900/60 transition-all cursor-pointer"
                 >
                   <div className="text-3xl mb-3">{v.icon}</div>
                   <h3
@@ -314,7 +314,7 @@ export default function IntakePage() {
             </div>
           ) : (
             /* ---- Chat + Intake Form Split ---- */
-            <div className="grid lg:grid-cols-5 gap-6">
+            <div className="grid lg:grid-cols-5 gap-4 lg:gap-6">
               {/* Chat Panel — 60% */}
               <div className="lg:col-span-3 flex flex-col">
                 {/* Chat Header */}
@@ -341,7 +341,7 @@ export default function IntakePage() {
                 </div>
 
                 {/* Messages */}
-                <div className="flex-1 min-h-[400px] max-h-[600px] overflow-y-auto px-4 py-4 space-y-4 border-x border-white/[0.08] bg-navy-950/40">
+                <div className="flex-1 min-h-[280px] sm:min-h-[400px] max-h-[50vh] sm:max-h-[600px] overflow-y-auto px-3 sm:px-4 py-3 sm:py-4 space-y-3 sm:space-y-4 border-x border-white/[0.08] bg-navy-950/40">
                   {messages.map((msg, i) => (
                     <div
                       key={i}
@@ -392,7 +392,7 @@ export default function IntakePage() {
                 )}
 
                 {/* Input */}
-                <div className="flex items-end gap-2 px-4 py-3 rounded-b-2xl border border-white/[0.08] border-t-0 bg-navy-900/60">
+                <div className="flex items-end gap-2 px-3 sm:px-4 py-2.5 sm:py-3 rounded-b-2xl border border-white/[0.08] border-t-0 bg-navy-900/60">
                   <textarea
                     ref={inputRef}
                     value={input}
@@ -419,7 +419,7 @@ export default function IntakePage() {
 
               {/* Intake Form Panel — 40% */}
               <div className="lg:col-span-2">
-                <div className="sticky top-6">
+                <div className="lg:sticky lg:top-6">
                   <div className="rounded-2xl border border-white/[0.08] bg-navy-900/60 overflow-hidden">
                     {/* Form Header */}
                     <div className="px-5 py-4 border-b border-white/[0.06]">
@@ -446,7 +446,7 @@ export default function IntakePage() {
                     </div>
 
                     {/* Fields */}
-                    <div className="px-5 py-4 space-y-3 max-h-[500px] overflow-y-auto">
+                    <div className="px-4 sm:px-5 py-3 sm:py-4 space-y-3 max-h-[300px] sm:max-h-[500px] overflow-y-auto">
                       {config!.schema.map((field: FieldDef) => {
                         const value = intakeData[field.key];
                         return (

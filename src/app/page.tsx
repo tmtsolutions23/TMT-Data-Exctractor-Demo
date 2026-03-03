@@ -62,14 +62,14 @@ export default function LandingPage() {
         <Header />
 
         {/* Hero */}
-        <section className="max-w-7xl mx-auto px-6 pt-20 pb-24">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-12 sm:pt-20 pb-16 sm:pb-24">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-medium mb-6">
               <Zap className="w-3.5 h-3.5" />
               AI-Powered Automation
             </div>
             <h2
-              className="text-5xl sm:text-6xl font-extrabold tracking-tight leading-[1.08] mb-5"
+              className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08] mb-5"
               style={{ fontFamily: "var(--font-display)" }}
             >
               We build the systems
@@ -78,7 +78,7 @@ export default function LandingPage() {
                 that run your business.
               </span>
             </h2>
-            <p className="text-lg sm:text-xl text-slate-400 leading-relaxed max-w-2xl mb-8">
+            <p className="text-base sm:text-lg lg:text-xl text-slate-400 leading-relaxed max-w-2xl mb-8">
               TMT Tech Solutions helps businesses automate repetitive workflows
               with AI — from document processing to client intake to custom
               integrations. Less manual work, more growth.
@@ -103,8 +103,8 @@ export default function LandingPage() {
 
         {/* About / Experience */}
         <section className="border-y border-white/[0.06]">
-          <div className="max-w-7xl mx-auto px-6 py-20">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
+            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-3">
                   Why TMT
@@ -139,7 +139,7 @@ export default function LandingPage() {
                 ].map((stat) => (
                   <div
                     key={stat.label}
-                    className="rounded-2xl border border-white/[0.06] bg-navy-900/40 p-6 text-center"
+                    className="rounded-2xl border border-white/[0.06] bg-navy-900/40 p-4 sm:p-6 text-center"
                   >
                     <p
                       className="text-2xl font-bold text-amber-400 mb-1"
@@ -158,8 +158,8 @@ export default function LandingPage() {
         </section>
 
         {/* Services / What We Build */}
-        <section className="max-w-7xl mx-auto px-6 py-20">
-          <div className="text-center mb-12">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
+          <div className="text-center mb-8 sm:mb-12">
             <p className="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-3">
               Services
             </p>
@@ -176,7 +176,7 @@ export default function LandingPage() {
               return (
                 <div
                   key={service.title}
-                  className="group rounded-2xl border border-white/[0.06] bg-navy-900/40 p-6 hover:border-white/[0.12] transition-all"
+                  className="group rounded-2xl border border-white/[0.06] bg-navy-900/40 p-4 sm:p-6 hover:border-white/[0.12] transition-all"
                 >
                   <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-4">
                     <Icon className="w-5 h-5 text-amber-400" />
@@ -207,8 +207,8 @@ export default function LandingPage() {
 
         {/* Featured Product — Alexandria */}
         <section className="border-y border-white/[0.06]">
-          <div className="max-w-7xl mx-auto px-6 py-20">
-            <div className="max-w-3xl mx-auto text-center mb-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
+            <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-10">
               <p className="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-3">
                 Featured Product
               </p>
@@ -223,9 +223,9 @@ export default function LandingPage() {
               href="https://libalexandria.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="group block max-w-3xl mx-auto rounded-2xl border border-white/[0.08] bg-navy-900/60 p-8 hover:border-amber-500/30 hover:bg-amber-500/[0.03] transition-all"
+              className="group block max-w-3xl mx-auto rounded-2xl border border-white/[0.08] bg-navy-900/60 p-5 sm:p-8 hover:border-amber-500/30 hover:bg-amber-500/[0.03] transition-all"
             >
-              <div className="flex items-start gap-5">
+              <div className="flex items-start gap-3 sm:gap-5">
                 <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0">
                   <BookOpen className="w-6 h-6 text-amber-400" />
                 </div>
@@ -258,8 +258,8 @@ export default function LandingPage() {
 
         {/* Live Demos Banner */}
         <section id="demos" className="border-y border-white/[0.06]">
-          <div className="max-w-7xl mx-auto px-6 py-20">
-            <div className="text-center mb-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
+            <div className="text-center mb-8 sm:mb-10">
               <p className="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-3">
                 Try It Yourself
               </p>
@@ -274,7 +274,7 @@ export default function LandingPage() {
                 is never stored.
               </p>
             </div>
-            <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 max-w-3xl mx-auto">
               <Link
                 href="/extract"
                 className="group flex flex-col rounded-2xl border border-white/[0.08] bg-navy-900/60 p-6 hover:border-amber-500/30 hover:bg-amber-500/[0.03] transition-all"
@@ -325,7 +325,7 @@ export default function LandingPage() {
         </section>
 
         {/* Contact */}
-        <section id="contact" className="max-w-7xl mx-auto px-6 py-20">
+        <section id="contact" className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
           <div className="max-w-2xl mx-auto text-center">
             <p className="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-3">
               Get Started

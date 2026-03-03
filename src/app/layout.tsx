@@ -15,9 +15,28 @@ const bricolage = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  title: "TMT Tech Solutions | AI Document Intelligence",
+  metadataBase: new URL("https://tmtsolutions.tech"),
+  title: {
+    default: "TMT Tech Solutions | AI Automation for Business",
+    template: "%s | TMT Tech Solutions",
+  },
   description:
-    "Extract structured data from any document in seconds. AI-powered document processing for Westchester businesses.",
+    "AI-powered workflow automation for businesses. Document processing, client intake, and custom integrations built by a team with 14+ years of IT expertise.",
+  openGraph: {
+    title: "TMT Tech Solutions | AI Automation for Business",
+    description:
+      "AI-powered workflow automation for businesses. Document processing, client intake, and custom integrations.",
+    url: "https://tmtsolutions.tech",
+    siteName: "TMT Tech Solutions",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TMT Tech Solutions | AI Automation for Business",
+    description:
+      "AI-powered workflow automation for businesses. Document processing, client intake, and custom integrations.",
+  },
 };
 
 export default function RootLayout({

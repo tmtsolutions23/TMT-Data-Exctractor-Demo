@@ -435,14 +435,14 @@ export default function Home() {
         <Header />
 
         {/* Hero */}
-        <section className="max-w-7xl mx-auto px-6 pt-12 pb-8">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 sm:pt-12 pb-4 sm:pb-8">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-medium mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
               Live Demo
             </div>
             <h2
-              className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-[1.1] mb-3"
+              className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1] mb-3"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Extract structured data
@@ -451,7 +451,7 @@ export default function Home() {
                 from any document.
               </span>
             </h2>
-            <p className="text-lg text-slate-400 leading-relaxed max-w-lg">
+            <p className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-lg">
               Drop one PDF or fifty. Get clean, organized data back in seconds.
               Export to Excel with a single click.
             </p>
@@ -459,15 +459,15 @@ export default function Home() {
         </section>
 
         {/* Controls Bar */}
-        <section className="max-w-7xl mx-auto px-6 pb-4">
-          <div className="flex flex-wrap items-center gap-4">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-4">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             {/* Document Type */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {DOC_TYPES.map((type) => (
                 <button
                   key={type}
                   onClick={() => setDocType(type)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 cursor-pointer ${
+                  className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-[11px] sm:text-xs font-medium transition-all duration-200 cursor-pointer ${
                     docType === type
                       ? "bg-amber-500/15 text-amber-300 border border-amber-500/30"
                       : "bg-navy-800/60 text-slate-400 border border-white/[0.06] hover:border-white/[0.12] hover:text-slate-300"
@@ -507,17 +507,17 @@ export default function Home() {
         </section>
 
         {/* Main Content */}
-        <section className="max-w-7xl mx-auto px-6 pb-24">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-16 sm:pb-24">
           {inputMode === "text" ? (
             /* ---- Text Mode (unchanged) ---- */
-            <div className="grid lg:grid-cols-2 gap-8">
+            <div className="grid lg:grid-cols-2 gap-4 sm:gap-8">
               <div className="space-y-4">
                 <textarea
                   value={textInput}
                   onChange={(e) => setTextInput(e.target.value)}
                   placeholder="Paste your document text here..."
-                  rows={14}
-                  className="w-full rounded-2xl bg-navy-900/40 border border-white/[0.08] px-5 py-4 text-sm text-slate-200 placeholder:text-slate-600 focus:outline-none focus:border-amber-500/40 focus:ring-1 focus:ring-amber-500/20 transition-all resize-none"
+                  rows={8}
+                  className="w-full rounded-2xl bg-navy-900/40 border border-white/[0.08] px-4 sm:px-5 py-3 sm:py-4 text-sm text-slate-200 placeholder:text-slate-600 focus:outline-none focus:border-amber-500/40 focus:ring-1 focus:ring-amber-500/20 transition-all resize-none"
                 />
                 <div className="flex gap-3">
                   <button
@@ -549,7 +549,7 @@ export default function Home() {
                   </div>
                 )}
                 {textLoading && (
-                  <div className="flex flex-col items-center justify-center rounded-2xl border border-amber-500/20 bg-amber-500/[0.02] px-8 py-16">
+                  <div className="flex flex-col items-center justify-center rounded-2xl border border-amber-500/20 bg-amber-500/[0.02] px-6 sm:px-8 py-10 sm:py-16">
                     <Loader2 className="w-7 h-7 text-amber-400 animate-spin mb-4" />
                     <p className="text-amber-300 font-medium">Analyzing...</p>
                   </div>
@@ -568,7 +568,7 @@ export default function Home() {
                         {textTime ? `${(textTime / 1000).toFixed(1)}s` : "—"}
                       </div>
                     </div>
-                    <div className="rounded-2xl border border-white/[0.08] bg-navy-900/60 p-5 space-y-3 max-h-[600px] overflow-y-auto">
+                    <div className="rounded-2xl border border-white/[0.08] bg-navy-900/60 p-3 sm:p-5 space-y-3 max-h-[600px] overflow-y-auto">
                       {Object.entries(textResult).map(([key, value]) => (
                         <div key={key}>
                           <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
@@ -600,7 +600,7 @@ export default function Home() {
               >
                 <input {...getInputProps()} />
                 <div
-                  className={`flex flex-col items-center justify-center px-6 ${hasFiles ? "py-8" : "py-16"}`}
+                  className={`flex flex-col items-center justify-center px-4 sm:px-6 ${hasFiles ? "py-6 sm:py-8" : "py-10 sm:py-16"}`}
                 >
                   <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center mb-3 group-hover:bg-white/[0.06] transition-colors">
                     <Upload className="w-6 h-6 text-slate-400 group-hover:text-slate-300 transition-colors" />
@@ -622,8 +622,8 @@ export default function Home() {
               {hasFiles && (
                 <div className="space-y-4">
                   {/* Status bar */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4 text-xs">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div className="flex items-center gap-2 sm:gap-4 text-xs flex-wrap">
                       <span className="text-slate-400">
                         {files.length} file{files.length !== 1 ? "s" : ""}
                       </span>
@@ -696,7 +696,7 @@ export default function Home() {
                     {files.map((entry) => (
                       <div
                         key={entry.id}
-                        className={`flex items-center gap-3 px-4 py-3 rounded-xl border transition-all ${
+                        className={`flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border transition-all ${
                           entry.status === "done"
                             ? "border-emerald-500/20 bg-emerald-500/[0.03]"
                             : entry.status === "error"
@@ -750,12 +750,12 @@ export default function Home() {
                   </div>
 
                   {/* Action buttons */}
-                  <div className="flex gap-3">
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                     {queuedCount > 0 && (
                       <button
                         onClick={processAllFiles}
                         disabled={isProcessing}
-                        className="flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-navy-950 font-semibold text-sm disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-[0_0_20px_rgba(251,191,36,0.15)] cursor-pointer"
+                        className="flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-navy-950 font-semibold text-sm disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-[0_0_20px_rgba(251,191,36,0.15)] cursor-pointer"
                       >
                         {isProcessing ? (
                           <>
@@ -819,7 +819,7 @@ export default function Home() {
                               Copy JSON
                             </button>
                           </div>
-                          <div className="p-5 space-y-3 max-h-[400px] overflow-y-auto">
+                          <div className="p-3 sm:p-5 space-y-3 max-h-[400px] overflow-y-auto">
                             {Object.entries(entry.result!).map(
                               ([key, value]) => (
                                 <div key={key}>
@@ -851,7 +851,7 @@ export default function Home() {
                         </h3>
                         <div className="rounded-2xl border border-white/[0.08] bg-navy-900/60 overflow-hidden">
                           <div className="overflow-x-auto">
-                            <table className="w-full text-sm">
+                            <table className="w-full text-xs sm:text-sm">
                               <thead>
                                 <tr className="border-b border-white/[0.06]">
                                   {columns.map((col) => (
