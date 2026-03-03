@@ -2,32 +2,15 @@ import Anthropic from "@anthropic-ai/sdk";
 import OpenAI from "openai";
 import path from "path";
 import { NextRequest, NextResponse } from "next/server";
-import { LRUCache } from "lru-cache";
+import { getClientIP, checkRateLimit } from "@/lib/rate-limit";
+import { getOpenAI } from "@/lib/openai";
 
 let _anthropic: Anthropic | null = null;
-let _openai: OpenAI | null = null;
 
 function getAnthropic() {
   if (!_anthropic) _anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
   return _anthropic;
 }
-
-function getOpenAI() {
-  if (!_openai) _openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-  return _openai;
-}
-
-// Rate limiting: 10 requests per minute per IP
-const rateLimitCache = new LRUCache<string, number>({
-  max: 500,
-  ttl: 60_000,
-});
-
-// Daily quota: 100 requests per day per IP
-const dailyQuotaCache = new LRUCache<string, number>({
-  max: 500,
-  ttl: 86_400_000,
-});
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
 const MAX_TEXT_LENGTH = 100_000; // ~25k tokens
@@ -198,29 +181,10 @@ function parseJSON(text: string): Record<string, unknown> {
 
 export async function POST(request: NextRequest) {
   try {
-    // Rate limiting — use x-real-ip (set by Vercel, not spoofable) with fallback
-    const forwarded = (request.headers.get("x-forwarded-for") ?? "").split(",")[0].trim();
-    const ip = request.headers.get("x-real-ip") ?? (forwarded || "unknown");
-
-    // Per-minute rate limit
-    const minuteCount = (rateLimitCache.get(ip) ?? 0) + 1;
-    rateLimitCache.set(ip, minuteCount);
-    if (minuteCount > 10) {
-      return NextResponse.json(
-        { error: "Rate limit exceeded. Please try again in a minute." },
-        { status: 429 }
-      );
-    }
-
-    // Daily quota
-    const dailyCount = (dailyQuotaCache.get(ip) ?? 0) + 1;
-    dailyQuotaCache.set(ip, dailyCount);
-    if (dailyCount > 100) {
-      return NextResponse.json(
-        { error: "Daily quota exceeded. Please try again tomorrow." },
-        { status: 429 }
-      );
-    }
+    // Shared rate limiting
+    const ip = getClientIP(request.headers);
+    const rateLimitResponse = checkRateLimit(ip);
+    if (rateLimitResponse) return rateLimitResponse;
 
     const formData = await request.formData();
     const file = formData.get("file") as File | null;

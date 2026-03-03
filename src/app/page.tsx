@@ -10,8 +10,6 @@ import {
   Loader2,
   CheckCircle2,
   AlertCircle,
-  Zap,
-  Shield,
   Clock,
   ArrowRight,
   X,
@@ -19,6 +17,8 @@ import {
   Table,
   LayoutList,
 } from "lucide-react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 // --- Types ---
 
@@ -432,31 +432,7 @@ export default function Home() {
       </div>
 
       <div className="relative z-10">
-        {/* Header */}
-        <header className="border-b border-white/[0.06]">
-          <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center">
-                <Zap className="w-5 h-5 text-navy-950" strokeWidth={2.5} />
-              </div>
-              <div>
-                <h1
-                  className="text-lg font-bold tracking-tight"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  TMT Tech Solutions
-                </h1>
-                <p className="text-[11px] text-slate-500 tracking-widest uppercase">
-                  AI Document Intelligence
-                </p>
-              </div>
-            </div>
-            <div className="hidden sm:flex items-center gap-2 text-xs text-slate-500">
-              <Shield className="w-3.5 h-3.5" />
-              <span>Your data is never stored</span>
-            </div>
-          </div>
-        </header>
+        <Header />
 
         {/* Hero */}
         <section className="max-w-7xl mx-auto px-6 pt-12 pb-8">
@@ -928,23 +904,7 @@ export default function Home() {
           )}
         </section>
 
-        {/* Footer */}
-        <footer className="border-t border-white/[0.06]">
-          <div className="max-w-7xl mx-auto px-6 py-8">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-2 text-sm text-slate-500">
-                <span className="font-medium text-slate-400">
-                  TMT Tech Solutions LLC
-                </span>
-                <span className="text-slate-700">|</span>
-                <span>Ossining, NY</span>
-              </div>
-              <p className="text-xs text-slate-600">
-                AI workflow automation for Westchester businesses
-              </p>
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </div>
   );
