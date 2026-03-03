@@ -38,8 +38,10 @@ function parseIntakeData(
     const result: Record<string, string> = {};
     for (const [k, v] of Object.entries(raw)) {
       if (validKeys && !validKeys.has(k)) continue;
-      if (typeof v === "string" && v.length <= 500) {
-        result[k] = v;
+      if (v == null) continue;
+      const str = String(v);
+      if (str.length <= 500) {
+        result[k] = str;
       }
     }
     return Object.keys(result).length > 0 ? result : null;
