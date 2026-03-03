@@ -5,7 +5,8 @@ import { usePathname } from "next/navigation";
 import { Zap, Shield } from "lucide-react";
 
 const NAV_LINKS = [
-  { href: "/", label: "Document Extract" },
+  { href: "/", label: "Home" },
+  { href: "/extract", label: "Document Extract" },
   { href: "/intake", label: "Client Intake" },
 ];
 
