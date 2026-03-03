@@ -43,7 +43,7 @@ const SERVICES = [
     icon: Shield,
     title: "Network Infrastructure & Security",
     description:
-      "Enterprise-grade network architecture, monitoring, and security. 14+ years of hands-on infrastructure experience.",
+      "Enterprise-grade network architecture, monitoring, and security. 15+ years of hands-on infrastructure experience.",
     href: null,
     cta: null,
   },
@@ -113,7 +113,7 @@ export default function LandingPage() {
                   className="text-3xl sm:text-4xl font-bold tracking-tight mb-5"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
-                  14+ years of IT expertise,
+                  15+ years of IT expertise,
                   <br />
                   now focused on AI.
                 </h3>
@@ -132,7 +132,7 @@ export default function LandingPage() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { value: "14+", label: "Years in IT" },
+                  { value: "15+", label: "Years in IT" },
                   { value: "AI", label: "Automation Focus" },
                   { value: "Full", label: "Stack Expertise" },
                   { value: "WC", label: "Westchester, NY" },
