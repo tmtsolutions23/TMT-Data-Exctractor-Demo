@@ -350,7 +350,7 @@ export default function LandingPage() {
               info@tmtsolutions.tech
             </a>
             <p className="text-xs text-slate-500 mt-4">
-              Gil — TMT Tech Solutions LLC, Ossining, NY
+              TMT Tech Solutions LLC, Ossining, NY
             </p>
           </div>
         </section>
