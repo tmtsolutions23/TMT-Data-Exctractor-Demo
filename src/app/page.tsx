@@ -343,11 +343,11 @@ export default function LandingPage() {
               a custom integration — we&apos;ll build it right.
             </p>
             <a
-              href="mailto:gil@tmtsolutions.tech"
+              href="mailto:info@tmtsolutions.tech"
               className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-navy-950 font-semibold text-sm transition-all shadow-[0_0_20px_rgba(251,191,36,0.15)] hover:shadow-[0_0_30px_rgba(251,191,36,0.25)]"
             >
               <Mail className="w-4 h-4" />
-              gil@tmtsolutions.tech
+              info@tmtsolutions.tech
             </a>
             <p className="text-xs text-slate-500 mt-4">
               Gil — TMT Tech Solutions LLC, Ossining, NY
