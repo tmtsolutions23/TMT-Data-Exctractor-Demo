@@ -10,6 +10,7 @@ import {
   ChevronRight,
   BookOpen,
   ExternalLink,
+  RefreshCw,
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -97,6 +98,99 @@ export default function LandingPage() {
               >
                 Get in Touch
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Featured Products */}
+        <section className="border-y border-white/[0.06] bg-gradient-to-b from-amber-500/[0.02] to-transparent">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
+            <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-14">
+              <p className="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-3">
+                Featured Products
+              </p>
+              <h3
+                className="text-3xl sm:text-5xl font-bold tracking-tight mb-4"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                Software we&apos;ve built,
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500">
+                  running in production.
+                </span>
+              </h3>
+              <p className="text-base sm:text-lg text-slate-400 leading-relaxed">
+                Two flagship platforms built from the ground up — shipping to
+                real customers today.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-5 sm:gap-6">
+              <a
+                href="https://libalexandria.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative flex flex-col rounded-3xl border border-white/[0.08] bg-navy-900/60 p-6 sm:p-8 hover:border-amber-500/40 hover:bg-amber-500/[0.04] transition-all shadow-[0_0_0_1px_rgba(251,191,36,0)] hover:shadow-[0_0_40px_rgba(251,191,36,0.08)]"
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
+                    <BookOpen className="w-7 h-7 text-amber-400" />
+                  </div>
+                  <ExternalLink className="w-5 h-5 text-slate-500 group-hover:text-amber-400 transition-colors" />
+                </div>
+                <p className="text-xs font-semibold uppercase tracking-widest text-amber-400/80 mb-2">
+                  Lib Alexandria
+                </p>
+                <h4
+                  className="text-2xl sm:text-3xl font-bold tracking-tight mb-3"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  The ancient library, reimagined.
+                </h4>
+                <p className="text-sm sm:text-base text-slate-400 leading-relaxed mb-6 flex-1">
+                  An AI-powered knowledge base we built from the ground up.
+                  Organizations upload their documents and ask questions in
+                  plain language — Alexandria answers using only their data,
+                  with cited sources and zero hallucination. Private, secure,
+                  and SOC 2 certified.
+                </p>
+                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-400 group-hover:text-amber-300 transition-colors">
+                  Visit libalexandria.org
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </span>
+              </a>
+              <a
+                href="https://mspsync.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative flex flex-col rounded-3xl border border-white/[0.08] bg-navy-900/60 p-6 sm:p-8 hover:border-amber-500/40 hover:bg-amber-500/[0.04] transition-all shadow-[0_0_0_1px_rgba(251,191,36,0)] hover:shadow-[0_0_40px_rgba(251,191,36,0.08)]"
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
+                    <RefreshCw className="w-7 h-7 text-amber-400" />
+                  </div>
+                  <ExternalLink className="w-5 h-5 text-slate-500 group-hover:text-amber-400 transition-colors" />
+                </div>
+                <p className="text-xs font-semibold uppercase tracking-widest text-amber-400/80 mb-2">
+                  MSPSync
+                </p>
+                <h4
+                  className="text-2xl sm:text-3xl font-bold tracking-tight mb-3"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  PSA-native knowledge for MSPs.
+                </h4>
+                <p className="text-sm sm:text-base text-slate-400 leading-relaxed mb-6 flex-1">
+                  A knowledge platform built natively for Managed Service
+                  Providers. MSPSync plugs directly into your PSA so technicians
+                  get the right answers inside the tools they already use — no
+                  context-switching, no stale wikis, no hunting through
+                  SharePoint.
+                </p>
+                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-400 group-hover:text-amber-300 transition-colors">
+                  Visit mspsync.app
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </span>
+              </a>
             </div>
           </div>
         </section>
@@ -202,57 +296,6 @@ export default function LandingPage() {
                 </div>
               );
             })}
-          </div>
-        </section>
-
-        {/* Featured Product — Alexandria */}
-        <section className="border-y border-white/[0.06]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
-            <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-10">
-              <p className="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-3">
-                Featured Product
-              </p>
-              <h3
-                className="text-3xl sm:text-4xl font-bold tracking-tight"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                Lib Alexandria
-              </h3>
-            </div>
-            <a
-              href="https://libalexandria.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group block max-w-3xl mx-auto rounded-2xl border border-white/[0.08] bg-navy-900/60 p-5 sm:p-8 hover:border-amber-500/30 hover:bg-amber-500/[0.03] transition-all"
-            >
-              <div className="flex items-start gap-3 sm:gap-5">
-                <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0">
-                  <BookOpen className="w-6 h-6 text-amber-400" />
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-2">
-                    <h4
-                      className="text-xl font-bold"
-                      style={{ fontFamily: "var(--font-display)" }}
-                    >
-                      The ancient library, reimagined.
-                    </h4>
-                    <ExternalLink className="w-4 h-4 text-slate-500 group-hover:text-amber-400 transition-colors shrink-0" />
-                  </div>
-                  <p className="text-sm text-slate-400 leading-relaxed mb-4">
-                    An AI-powered knowledge base we built from the ground up.
-                    Organizations upload their documents and ask questions in
-                    plain language — Alexandria answers using only their data,
-                    with cited sources and zero hallucination. Private, secure,
-                    and SOC 2 certified.
-                  </p>
-                  <span className="inline-flex items-center gap-1.5 text-sm font-medium text-amber-400 group-hover:text-amber-300 transition-colors">
-                    Visit libalexandria.org
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                  </span>
-                </div>
-              </div>
-            </a>
           </div>
         </section>
 
