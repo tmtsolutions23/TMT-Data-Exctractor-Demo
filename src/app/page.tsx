@@ -382,9 +382,9 @@ export default function LandingPage() {
                   Booking & Payments Site
                 </h4>
                 <p className="text-sm text-slate-400 mb-4 flex-1">
-                  Full-stack booking platform with live calendar, Stripe
-                  payments, and an admin backend. Built end-to-end for a local
-                  sports facility.
+                  A customizable full-stack booking platform with live calendar,
+                  Stripe payments, and an admin backend. Ready to brand for any
+                  service business — gyms, studios, salons, clinics, and more.
                 </p>
                 <span className="inline-flex items-center gap-1.5 text-sm font-medium text-amber-400 group-hover:text-amber-300 transition-colors">
                   View live site
