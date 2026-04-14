@@ -4,10 +4,21 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Zap, Shield } from "lucide-react";
 
-const NAV_LINKS = [
+type NavLink = {
+  href: string;
+  label: string;
+  external?: boolean;
+};
+
+const NAV_LINKS: NavLink[] = [
   { href: "/", label: "Home" },
   { href: "/extract", label: "Document Extract" },
   { href: "/intake", label: "Client Intake" },
+  {
+    href: "https://dafonte-booking.vercel.app/",
+    label: "Booking Site",
+    external: true,
+  },
 ];
 
 export default function Header() {
@@ -36,17 +47,27 @@ export default function Header() {
 
           <nav className="hidden sm:flex items-center gap-1 ml-2">
             {NAV_LINKS.map((link) => {
-              const isActive = pathname === link.href;
+              const isActive = !link.external && pathname === link.href;
+              const className = `px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                isActive
+                  ? "bg-amber-500/15 text-amber-300 border border-amber-500/30"
+                  : "text-slate-400 hover:text-slate-300 hover:bg-white/[0.04]"
+              }`;
+              if (link.external) {
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={className}
+                  >
+                    {link.label}
+                  </a>
+                );
+              }
               return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                    isActive
-                      ? "bg-amber-500/15 text-amber-300 border border-amber-500/30"
-                      : "text-slate-400 hover:text-slate-300 hover:bg-white/[0.04]"
-                  }`}
-                >
+                <Link key={link.href} href={link.href} className={className}>
                   {link.label}
                 </Link>
               );
@@ -63,17 +84,27 @@ export default function Header() {
       {/* Mobile nav */}
       <div className="sm:hidden flex items-center gap-1.5 px-4 pb-3 overflow-x-auto">
         {NAV_LINKS.map((link) => {
-          const isActive = pathname === link.href;
+          const isActive = !link.external && pathname === link.href;
+          const className = `px-3 py-2 rounded-lg text-xs font-medium transition-all whitespace-nowrap ${
+            isActive
+              ? "bg-amber-500/15 text-amber-300 border border-amber-500/30"
+              : "text-slate-400 hover:text-slate-300 hover:bg-white/[0.04]"
+          }`;
+          if (link.external) {
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={className}
+              >
+                {link.label}
+              </a>
+            );
+          }
           return (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`px-3 py-2 rounded-lg text-xs font-medium transition-all whitespace-nowrap ${
-                isActive
-                  ? "bg-amber-500/15 text-amber-300 border border-amber-500/30"
-                  : "text-slate-400 hover:text-slate-300 hover:bg-white/[0.04]"
-              }`}
-            >
+            <Link key={link.href} href={link.href} className={className}>
               {link.label}
             </Link>
           );
