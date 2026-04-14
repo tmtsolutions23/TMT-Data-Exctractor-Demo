@@ -11,6 +11,7 @@ import {
   BookOpen,
   ExternalLink,
   RefreshCw,
+  CalendarCheck,
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -313,11 +314,10 @@ export default function LandingPage() {
                 Live Demos
               </h3>
               <p className="text-slate-400 max-w-lg mx-auto">
-                See our AI solutions in action. No signup required — your data
-                is never stored.
+                See our AI and full-stack builds in action. No signup required.
               </p>
             </div>
-            <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 max-w-3xl mx-auto">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto">
               <Link
                 href="/extract"
                 className="group flex flex-col rounded-2xl border border-white/[0.08] bg-navy-900/60 p-6 hover:border-amber-500/30 hover:bg-amber-500/[0.03] transition-all"
@@ -363,6 +363,34 @@ export default function LandingPage() {
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </span>
               </Link>
+              <a
+                href="https://dafonte-booking.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col rounded-2xl border border-white/[0.08] bg-navy-900/60 p-6 hover:border-amber-500/30 hover:bg-amber-500/[0.03] transition-all"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
+                    <CalendarCheck className="w-5 h-5 text-amber-400" />
+                  </div>
+                  <ExternalLink className="w-4 h-4 text-slate-500 group-hover:text-amber-400 transition-colors" />
+                </div>
+                <h4
+                  className="text-lg font-bold mb-1"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  Booking & Payments Site
+                </h4>
+                <p className="text-sm text-slate-400 mb-4 flex-1">
+                  Full-stack booking platform with live calendar, Stripe
+                  payments, and an admin backend. Built end-to-end for a local
+                  sports facility.
+                </p>
+                <span className="inline-flex items-center gap-1.5 text-sm font-medium text-amber-400 group-hover:text-amber-300 transition-colors">
+                  View live site
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </span>
+              </a>
             </div>
           </div>
         </section>
